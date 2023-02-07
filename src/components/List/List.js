@@ -8,15 +8,9 @@ const List = () =>
             <p className={styles.description}>Interseting things I want to check out</p>
         </header>
         <div className={styles.columns}>
-            <article>
-                <h2>Books</h2>
-            </article>
-            <article>
-                <h2>Movies</h2>
-            </article>
-            <article>
-                <h2>Games</h2>
-            </article>
+            <Column title="Books" />
+            <Column title="Movies" />
+            <Column title="Games" />
         </div>
     </body>
 

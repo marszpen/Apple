@@ -3,6 +3,8 @@ import SearchForm from './components/SearchFrom/SearchFrom';
 import List from './components/List/List';
 import TextInput from './components/TextInput/TextInput';
 import Button from './components/Button/Button';
+import Column from './components/Column/Column';
+
 
 const App = () => {
   return (
@@ -12,6 +14,7 @@ const App = () => {
       <List />
       <TextInput />
       <Button />
+      <Column />
     </div>
   );
 };
