@@ -2,7 +2,7 @@ import styles from './List.module.scss';
 import Column from './../Column/Column';
 import SearchForm from './../SearchForm/SearchForm';
 
-const List = () => 
+const List = () =>
     <body className={styles.list}>
         <header className={styles.header}>
             <h2 className={styles.title}>Things to do <span>soon!</span></h2>
@@ -10,9 +10,9 @@ const List = () =>
         </header>
         <SearchForm />
         <div className={styles.columns}>
-            <Column title="Books" />
-            <Column title="Movies" />
-            <Column title="Games" />
+            <Column title="Books" icon="book" />
+            <Column title="Movies" icon="film" />
+            <Column title="Games" icon="gamepad" />
         </div>
     </body>
 

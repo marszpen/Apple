@@ -1,8 +1,11 @@
 import styles from './Column.module.scss'
 
 const Column = props => {
-        <article className={styles.column}>
-            <h2 className={styles.title}><span className={styles.icon + ' fa fa-' + props.icon} />Things to do <span>soon</span></h2>
+    <article className={styles.column}>
+      <h2 className={styles.title}>
+        <span className={styles.icon + 'fa fa-' + props.icon} />
+        {props.title}
+      </h2>
         </article>
 };
 
