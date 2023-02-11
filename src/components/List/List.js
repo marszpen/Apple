@@ -17,14 +17,16 @@ const List = () => {
     }, 2000);
   
     const handleSubmit = e => {
-        e.preventDefault();
-        setColumns([...columns, { id: ??, title: ?? }]);
-    };
+		e.preventDefault();
+		setColumns([...columns, { id: shortid(), title: value }]);
+		setValue('');
+};
+
     
     const [value, setValue] = useState('');
   };
     <form onSubmit={handleSubmit}>
-        <input type="text" value={value} />
+        <input type="text" value={value} onChange={e => setValue(e.target.value)} />
         <button>Add column</button>
     </form>
 
