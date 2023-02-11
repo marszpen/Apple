@@ -1,7 +1,7 @@
 import styles from './List.module.scss';
 import Column from './../Column/Column';
 import SearchForm from './../SearchForm/SearchForm';
-import { useState } from 'react';
+import ColumnForm from '../ColumnForm/ColumnForm';
 
 
 const List = () => {
@@ -20,19 +20,11 @@ const List = () => {
 		e.preventDefault();
 		setColumns([...columns, { id: shortid(), title: value }]);
 		setValue('');
+    };
 };
-
     
-    const [value, setValue] = useState('');
-  };
-    <form onSubmit={handleSubmit}>
-        <input type="text" value={value} onChange={e => setValue(e.target.value)} />
-        <button>Add column</button>
-    </form>
 
-  
-
-  /* <body className={styles.list}>
+   <body className={styles.list}>
         <header className={styles.header}>
             <h2 className={styles.title}>Things to do <span>soon!</span></h2>
             <p className={styles.description}>Interseting things I want to check out</p>
@@ -41,7 +33,7 @@ const List = () => {
         <section className={styles.columns}>
             {columns.map(column => <Column key={column.id} title={column.title} icon={column.icon} />)}
         </section>
-
-    </body>*/
+        <ColumnForm handleSubmit={handleSubmit} />
+    </body>
 
 export default List
