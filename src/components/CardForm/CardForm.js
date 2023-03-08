@@ -9,7 +9,6 @@ const CardForm = props => {
         e.preventDefault();
         props.action({ title: title}, props.columnId);
         setTitle('');
-  
     }
 
 	return (
