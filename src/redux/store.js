@@ -8,11 +8,17 @@ const reducer = (state, action) => {
     case 'ADD_COLUMN':
       return { ...state, columns: [...state.columns, { ...action.payload, id: shortid() }]};
     case 'ADD_CARD':
-      return { ...state, card: [ ...state.cards, { ...action.payload, id: shortid() }]};
-    default:
+      return { ...state, cards: [ ...state.cards, { ...action.payload, id: shortid() }]};
+    case 'UPDATE_SEARCHING':
+      return { ...state, searchingString: action.payload};
+      default:
       return state;
   }
 };
+
+const searchString = (payload) => ({
+  type: 'UPDATE_SEARCHING', payload
+  })
 
 const store = createStore(
   reducer, //W pierwszym argumencie przekazujemy referencję do funkcji, która będzie odpowiadała za modyfikację danych z magazynu.
