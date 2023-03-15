@@ -14,6 +14,7 @@ export const getAllColumns = (state) => {
 // action creators
 export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
 export const addCard = payload => ({type: 'ADD_CARD', payload });
+export const searchString = payload => ({type: 'UPDATE_SEARCHING', payload});
 
   const reducer = (state, action) => {
   switch(action.type) {
@@ -27,10 +28,6 @@ export const addCard = payload => ({type: 'ADD_CARD', payload });
       return state;
   }
 };
-
-const searchString = (payload) => ({
-  type: 'UPDATE_SEARCHING', payload
-  })
 
 const store = createStore(
   reducer, //W pierwszym argumencie przekazujemy referencję do funkcji, która będzie odpowiadała za modyfikację danych z magazynu.
