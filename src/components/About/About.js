@@ -1,8 +1,10 @@
+import PageTitle from '../PageTitle/PageTitle';
 import style from './About.module.scss';
+import PageTitle from '../PageTitle/PageTitle';
 
 const About = () => {
     <div>
-        <h1 className={style.about}>ABOUT</h1>
+        <PageTitle className={style.about}>ABOUT</PageTitle>
         <p>Lorem Ipsum</p>
     </div>
 }
