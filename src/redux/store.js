@@ -16,6 +16,8 @@ export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
 export const addCard = payload => ({type: 'ADD_CARD', payload });
 export const searchString = payload => ({type: 'UPDATE_SEARCHING', payload});
 export const getListById = ({ lists }, listId) => lists.find(list => list.id === listId);
+export const getColumnsByList = ({ columns, searchString }, columnId) => columns
+.filter(column => column.columnId === columnId && strContains(column.title, searchString));
 
   const reducer = (state, action) => {
   switch(action.type) {
