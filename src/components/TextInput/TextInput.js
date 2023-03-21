@@ -5,5 +5,4 @@ const TextInput = (props) => (
     onChange={props.onChange} placeholder={props.placeholder} type="text" />
 );
 
-
 export default TextInput;
