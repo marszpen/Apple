@@ -40,7 +40,7 @@ const initialState = {
         title: 'Test list',
         description: 'Lorem Ipsum'
      }
-   ]
+   ],
 
     searchString: ''
   };

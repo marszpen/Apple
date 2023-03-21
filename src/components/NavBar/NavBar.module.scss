@@ -7,16 +7,13 @@
     overflow: hidden;
     cursor: pointer;
     font-size: 24px;
+    background-color: darken($color-dark, 3%);
 }
 
 .navigation {
 	justify-content: space-between;
 	background-color: darken($color-dark, 3%);
 	display: flex;
-  }
-
-.navigation i {
-  
   }
 
 li a:hover {
@@ -28,6 +25,10 @@ li a:hover {
 	text-decoration: none;
     display: block;
     padding: 14px 16px;
+
+    &  .linkActive {
+      color: $color-warning;
+    }
   }
 
 .navigation ul {

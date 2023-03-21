@@ -4,10 +4,9 @@ import ColumnForm from './../ColumnForm/ColumnForm';
 import { useSelector } from 'react-redux';
 import { getColumnsByList, getListById } from '../../redux/store';
 
-const List = () => {
-	//const columns = useSelector(state => state.columns);
-	const columns = useSelector(getColumnsByList);
-	const listData = useSelector(getListById);
+const List = (props) => {
+	const columns = useSelector((state) => getColumnsByList,(state, 1));
+	const listData = useSelector((state) => getListById(state, state, 1));
 	
 	return (
 		<div className={styles.list}>
