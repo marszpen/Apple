@@ -1,14 +1,20 @@
 import styles from './List.module.scss';
 import Column from './../Column/Column';
 import ColumnForm from './../ColumnForm/ColumnForm';
+import NavBar from './../NavBar/NavBar';
 import { useSelector } from 'react-redux';
 import { getColumnsByList, getListById } from '../../redux/store';
+import { useParams } from 'react-router';
 
-const List = (props) => {
-	const columns = useSelector((state) => getColumnsByList,(state, 1));
-	const listData = useSelector((state) => getListById(state, state, 1));
+
+const List = () => {
+	const { listId } = useParams();
+	const columns = useSelector((state) => getColumnsByList(state, listId));
+	const listData = useSelector((state) => getListById(state, listId));
 	
 	return (
+		<>
+		<NavBar />
 		<div className={styles.list}>
 		  <header className={styles.header}>
 			<h2 className={styles.title}>{listData.title}</h2>
@@ -23,6 +29,7 @@ const List = (props) => {
 		  </section>
 		  <ColumnForm />
 		</div>
+		</>
 	  );
 };
 

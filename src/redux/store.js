@@ -16,8 +16,9 @@ export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
 export const addCard = payload => ({type: 'ADD_CARD', payload });
 export const searchString = payload => ({type: 'UPDATE_SEARCHING', payload});
 export const getListById = ({ lists }, listId) => lists.find(list => list.id === listId);
-export const getColumnsByList = ({ columns, searchString }, columnId) => columns
-.filter(column => column.columnId === columnId && strContains(column.title, searchString));
+export const getColumnsByList = ({columns}, listId) => columns.filter((column) => column.listId === listId); //przyjmuje w argumencie informację, o jaką listę nam chodzi i zwracać tylko te kolumny, które są skojarzone właśnie z tą listą. Są skojarzone, czyli mają po prostu odpowiednią wartość właściwości listId
+export const getAllLists = (state) => state.liists; //getAllLists zwraca wszystkie listy
+
 
   const reducer = (state, action) => {
   switch(action.type) {
