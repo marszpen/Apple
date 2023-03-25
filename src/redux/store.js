@@ -3,9 +3,6 @@ import initialState from './initialStore';
 import shortid from 'shortid';
 import { strContains } from '../utils/strContains'
 
-//selectors
-//export const getFilteredCards = (state, columnId) => state.cards
-//  .filter(card => card.columnId === columnId && card.title.toLowerCase().includes(state.searchString.toLowerCase()));
 export const getFilteredCards = ({ cards, searchString }, columnId) => cards
   .filter(card => card.columnId === columnId && strContains(card.title, searchString));
 export const getAllColumns = (state) => {
@@ -14,10 +11,11 @@ export const getAllColumns = (state) => {
 // action creators
 export const addColumn = payload => ({ type: 'ADD_COLUMN', payload });
 export const addCard = payload => ({type: 'ADD_CARD', payload });
+export const addList = (payload) => ({ type: "ADD_LIST", payload });
 export const searchString = payload => ({type: 'UPDATE_SEARCHING', payload});
 export const getListById = ({ lists }, listId) => lists.find(list => list.id === listId);
 export const getColumnsByList = ({columns}, listId) => columns.filter((column) => column.listId === listId); //przyjmuje w argumencie informację, o jaką listę nam chodzi i zwracać tylko te kolumny, które są skojarzone właśnie z tą listą. Są skojarzone, czyli mają po prostu odpowiednią wartość właściwości listId
-export const getAllLists = (state) => state.liists; //getAllLists zwraca wszystkie listy
+export const getAllLists = (state) => state.lists; //getAllLists zwraca wszystkie listy
 
 
   const reducer = (state, action) => {
@@ -26,7 +24,10 @@ export const getAllLists = (state) => state.liists; //getAllLists zwraca wszystk
       return { ...state, columns: [...state.columns, { ...action.payload, id: shortid() }]};
     case 'ADD_CARD':
       return { ...state, cards: [ ...state.cards, { ...action.payload, id: shortid() }]};
-    case 'UPDATE_SEARCHING':
+        case "ADD_LIST":
+          return {
+            ...state, lists:[...state.lists, {...action.payload, id: shortid()}]};
+      case 'UPDATE_SEARCHING':
       return { ...state, searchString: action.payload};
       default:
       return state;
