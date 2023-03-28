@@ -1,4 +1,3 @@
-import NavBar from "../NavBar/NavBar";
 import Container from "../Container/Container";
 import PageTitle from "../PageTitle/PageTitle";
 import style from './NotFound.module.scss';

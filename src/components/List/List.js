@@ -6,13 +6,16 @@ import { useSelector } from 'react-redux';
 import { getColumnsByList, getListById } from '../../redux/store';
 import { useParams } from 'react-router';
 import SearchForm from '../SearchForm/SearchForm';
-
+import { Navigate } from 'react-router';
 
 const List = (props) => {
 	const { listId } = useParams();
 	const columns = useSelector((state) => getColumnsByList(state, listId));
 	const listData = useSelector((state) => getListById(state, listId));
 	
+
+	if(!listData) 
+	return <Navigate to="/" />
 	return (
 		<>
 		<NavBar />
