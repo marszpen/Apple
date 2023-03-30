@@ -11,3 +11,14 @@
     justify-content: space-between;
     font-weight: bold;
 }
+
+.button {
+	border: none;
+	background-color: #fff;
+	&:hover {
+	  cursor: pointer;
+	}
+	i {
+	  color: blue;
+	}
+}
