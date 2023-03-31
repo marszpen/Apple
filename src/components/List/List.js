@@ -18,7 +18,6 @@ const List = (props) => {
 	return <Navigate to="/" />
 	return (
 		<>
-		<NavBar />
 		<div className={styles.list}>
 		  <header className={styles.header}>
 			<h2 className={styles.title}>{listData.title}</h2>

@@ -1,8 +1,7 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import initialState from './initialStore';
 import shortid from 'shortid';
 import { strContains } from '../utils/strContains'
-import { type } from '@testing-library/user-event/dist/type';
 
 export const getFilteredCards = ({ cards, searchString }, columnId) => cards
   .filter(card => card.columnId === columnId && strContains(card.title, searchString));
@@ -17,26 +16,55 @@ export const searchString = payload => ({type: 'UPDATE_SEARCHING', payload});
 export const getListById = ({ lists }, listId) => lists.find(list => list.id === listId);
 export const getColumnsByList = ({columns}, listId) => columns.filter((column) => column.listId === listId); //przyjmuje w argumencie informację, o jaką listę nam chodzi i zwracać tylko te kolumny, które są skojarzone właśnie z tą listą. Są skojarzone, czyli mają po prostu odpowiednią wartość właściwości listId
 export const getAllLists = (state) => state.lists; //getAllLists zwraca wszystkie listy
-export const toggleCardFavourite = payload => {( type: 'TOGGLE_CARD_FAVOURITE', payload )}; 
+export const toggleCardFavorite = payload => ({ type: 'TOGGLE_CARD_FAVORITE', payload }); 
 
 
-  const reducer = (state, action) => {
+const listsReducer = (statePart = [], action) => {
+  switch(action.type) {
+    case 'ADD_LIST':
+      return [...statePart, { ...action.payload, id: shortid() }];
+    default:
+      return statePart;
+  }
+}
+
+const columnsReducer = (statePart = [], action) => {
   switch(action.type) {
     case 'ADD_COLUMN':
-      return { ...state, columns: [...state.columns, { ...action.payload, id: shortid() }]};
-    case 'ADD_CARD':
-      return { ...state, cards: [ ...state.cards, { ...action.payload, id: shortid() }]};
-        case "ADD_LIST":
-          return {
-            ...state, lists:[...state.lists, {...action.payload, id: shortid()}]};
-      case 'UPDATE_SEARCHING':
-      return { ...state, searchString: action.payload};
-    case 'TOGGLE_CARD_FAVOURITE':
-      return { ...state, cards: state.cards.map(card => (card.id === action.payload) ? { ...card, isFavorite: !card.isFavorite } : card) };
-      default:
-      return state;
+      return [...statePart, { ...action.payload, id: shortid() }];
+    default:
+      return statePart;
   }
-};
+}
+
+const cardsReducer = (statePart = [], action) => {
+  switch(action.type) {
+    case 'ADD_CARD':
+      return [...statePart, { ...action.payload, id: shortid() }];
+    case 'TOGGLE_CARD_FAVORITE':
+      return statePart.map(card => (card.id === action.payload) ? { ...card, isFavorite: !card.isFavorite } : card);
+    default:
+      return statePart;
+  }
+}
+
+const searchStringReducer = (statePart = '', action) => {
+  switch(action.type) {
+    case 'UPDATE_SEARCHSTRING':
+      return action.payload
+    default:
+      return statePart;
+  }
+}
+
+const subreducers = {
+  lists: listsReducer,
+  columns: columnsReducer,
+  cards: cardsReducer,
+  searchString: searchStringReducer
+}
+
+const reducer = combineReducers(subreducers);
 
 const store = createStore(
   reducer, //W pierwszym argumencie przekazujemy referencję do funkcji, która będzie odpowiadała za modyfikację danych z magazynu.
