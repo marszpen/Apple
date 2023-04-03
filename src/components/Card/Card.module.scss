@@ -12,6 +12,11 @@
     font-weight: bold;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: right;
+}
+
 .button {
 	border: none;
 	background-color: #fff;
